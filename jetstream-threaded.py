@@ -60,7 +60,7 @@ def worker(worker_id):
                     post_types[collection] += 1
                     
                     # Simulate slow work (database write, analysis, etc.)
-                    time.sleep(0.01)  # 10ms per message
+                    time.sleep(0.1)  # 10ms per message
                     
                     if post_types[collection] % 100 == 0:
                         print(f"[Worker {worker_id}] Processed {post_types[collection]} posts. Latest: {text}...")
@@ -103,7 +103,7 @@ def stats_reporter():
 
 def main():
     # Start worker threads (adjust number based on your processing needs)
-    num_workers = 4
+    num_workers = 6
     print(f"Starting {num_workers} worker threads...")
     for i in range(num_workers):
         t = threading.Thread(target=worker, args=(i,), daemon=True)
